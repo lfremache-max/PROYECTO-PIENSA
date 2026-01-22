@@ -5,96 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MundoCODE - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../Css/style.css">
 </head>
 <body>
     <div class="container-center">
         <div class="glass-card">
-            <i class="fas fa-user-astronaut" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+            <i class="fas fa-user-astronaut" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
             <h1>Bienvenido</h1>
             <p style="color: var(--text-gray); margin-bottom: 30px;">Ingresa a MundoCODE</p>
 
-            <form action="contenidos.html" novalidate>
-                
+            <form action="contenidos.html">
                 <div class="form-group">
                     <div class="input-wrapper">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="email-input" placeholder="Correo electrónico" required>
+                        <input type="email" placeholder="Correo electrónico" required>
                     </div>
-                    <div id="email-error" class="error-message"></div>
                 </div>
-
                 <div class="form-group">
                     <div class="input-wrapper">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="password-input" placeholder="Contraseña" required>
+                        <input type="password" placeholder="Contraseña" required>
                     </div>
-                    <div id="password-error" class="error-message"></div>
                 </div>
-
-                <button type="submit" class="btn-primary">INICIAR SESIÓN</button>
+                <button class="btn-primary">INICIAR SESIÓN</button>
             </form>
-
+            
             <p style="margin-top: 20px; font-size: 0.9rem;">
                 ¿No tienes cuenta? <a href="registro.html" style="color: var(--primary-color);">Regístrate</a>
             </p>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
-            const emailInput = document.getElementById('email-input');
-            const passwordInput = document.getElementById('password-input');
-            const emailError = document.getElementById('email-error');
-            const passwordError = document.getElementById('password-error');
-
-            form.addEventListener('submit', (e) => {
-                let isValid = true;
-                resetErrors(); // Limpia errores previos
-
-                // 1. Validar Email
-                if (!emailInput.value.trim()) {
-                    e.preventDefault(); 
-                    showError(emailInput, emailError, 'Completa este campo.');
-                    isValid = false;
-                } else if (!validateEmailFormat(emailInput.value)) {
-                    e.preventDefault();
-                    showError(emailInput, emailError, 'Incluye un signo "@" en la dirección de correo.');
-                    isValid = false;
-                }
-
-                // 2. Validar Contraseña
-                if (!passwordInput.value.trim()) {
-                    e.preventDefault();
-                    showError(passwordInput, passwordError, 'Completa este campo.');
-                    isValid = false;
-                }
-            });
-
-            // Función para mostrar el error visual
-            function showError(input, errorDiv, message) {
-                const wrapper = input.closest('.input-wrapper');
-                wrapper.classList.add('error-active');
-                errorDiv.innerText = message;
-                errorDiv.style.display = 'block';
-            }
-
-            // Función para limpiar errores
-            function resetErrors() {
-                document.querySelectorAll('.input-wrapper').forEach(div => div.classList.remove('error-active'));
-                document.querySelectorAll('.error-message').forEach(div => div.style.display = 'none');
-            }
-
-            // Validador simple de email
-            function validateEmailFormat(email) {
-                return String(email).toLowerCase().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-            }
-            
-            // Borrar error cuando el usuario escriba
-            emailInput.addEventListener('input', resetErrors);
-            passwordInput.addEventListener('input', resetErrors);
-        });
-    </script>
 </body>
 </html>
